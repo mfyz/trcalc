@@ -31,7 +31,7 @@ function getCurrencyColor(currency: string): string {
   return currency === 'USD' ? 'text-blue-600 dark:text-blue-400' : 'text-amber-600 dark:text-amber-400';
 }
 
-function HistoryItem({ entry }: { entry: HistoryEntry }) {
+function HistoryItem({ entry, showTime = true }: { entry: HistoryEntry; showTime?: boolean }) {
   const fromSymbol = getCurrencySymbol(entry.fromCurrency);
   const toSymbol = getCurrencySymbol(entry.toCurrency);
   const fromColor = getCurrencyColor(entry.fromCurrency);
@@ -51,9 +51,11 @@ function HistoryItem({ entry }: { entry: HistoryEntry }) {
           {toSymbol}{formatNumber(entry.outputValue)}
         </span>
       </div>
-      <span className="text-gray-400 dark:text-gray-500 text-xs ml-2 flex-shrink-0">
-        {formatTime(entry.timestamp)}
-      </span>
+      {showTime && (
+        <span className="text-gray-400 dark:text-gray-500 text-xs ml-2 flex-shrink-0">
+          {formatTime(entry.timestamp)}
+        </span>
+      )}
     </div>
   );
 }
@@ -109,7 +111,7 @@ export function History({ entries, onClear }: HistoryProps) {
     setIsDragging(false);
   };
 
-  const previewEntries = entries.slice(0, 3);
+  const previewEntries = entries.slice(0, 4);
 
   if (entries.length === 0) return null;
 
@@ -124,11 +126,10 @@ export function History({ entries, onClear }: HistoryProps) {
           <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
             History ({entries.length})
           </span>
-          <span className="text-xs text-gray-400 dark:text-gray-500">tap to expand ›</span>
         </div>
-        <div className="space-y-1">
+        <div className="grid grid-cols-2 gap-1">
           {previewEntries.map((entry) => (
-            <HistoryItem key={entry.id} entry={entry} />
+            <HistoryItem key={entry.id} entry={entry} showTime={false} />
           ))}
         </div>
       </div>
@@ -165,7 +166,7 @@ export function History({ entries, onClear }: HistoryProps) {
             {/* Header */}
             <div className="flex items-center justify-between px-4 pb-3 border-b border-gray-100 dark:border-gray-700">
               <h2 className="text-lg font-semibold dark:text-gray-100">History</h2>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-6">
                 {onClear && (
                   <button
                     onClick={() => {

@@ -155,11 +155,17 @@ export function Calculator() {
   const handleMultiplier = useCallback(
     (multiplier: Multiplier) => {
       if (inputValue > 0) {
-        saveToHistory(multiplier);
-        setInputValue(0);
+        let newValue: number;
+        if (multiplier.value > 0) {
+          newValue = Math.round(inputValue * (1 + multiplier.value / 100));
+        } else {
+          newValue = Math.round(inputValue / (1 + Math.abs(multiplier.value) / 100));
+        }
+        // Just update the value - don't save to history until equals is pressed
+        setInputValue(newValue);
       }
     },
-    [inputValue, saveToHistory]
+    [inputValue]
   );
 
   const handleQuickValue = useCallback(
@@ -198,17 +204,17 @@ export function Calculator() {
     const iconEl = document.getElementById('auto-reset-icon');
     if (iconEl) {
       if (!settings.autoReset) {
-        // Disabled: light gray outline
+        // Disabled: gray outline with 40% opacity
         iconEl.setAttribute('fill', 'none');
-        iconEl.setAttribute('class', 'h-5 w-5 text-gray-300');
+        iconEl.setAttribute('class', 'h-5 w-5 text-gray-400 opacity-40 transition-opacity');
       } else if (pendingReset) {
         // Enabled + pending: filled yellow
         iconEl.setAttribute('fill', 'currentColor');
-        iconEl.setAttribute('class', 'h-5 w-5 text-amber-400');
+        iconEl.setAttribute('class', 'h-5 w-5 text-amber-400 transition-opacity');
       } else {
-        // Enabled, normal: filled black
+        // Enabled, normal: neutral color like gear icon
         iconEl.setAttribute('fill', 'currentColor');
-        iconEl.setAttribute('class', 'h-5 w-5 text-gray-800');
+        iconEl.setAttribute('class', 'h-5 w-5 text-gray-600 dark:text-gray-400 transition-opacity');
       }
     }
   }, [settings.autoReset, pendingReset]);
