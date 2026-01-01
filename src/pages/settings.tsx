@@ -205,7 +205,7 @@ export default function SettingsPage() {
           <section className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
             <button
               onClick={handleAutoResetToggle}
-              className="w-full flex items-center justify-between p-3"
+              className="w-full flex items-center justify-between"
             >
               <div>
                 <div className="font-medium text-left dark:text-gray-100">Reset on app refocus</div>
@@ -214,12 +214,12 @@ export default function SettingsPage() {
                 </div>
               </div>
               <div
-                className={`w-12 h-7 rounded-full p-1 transition-colors ${
-                  settings.autoReset ? 'bg-blue-500' : 'bg-gray-300'
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ml-3 ${
+                  settings.autoReset ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
                 }`}
               >
                 <div
-                  className={`w-5 h-5 bg-white rounded-full shadow transition-transform ${
+                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
                     settings.autoReset ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -230,17 +230,17 @@ export default function SettingsPage() {
           {/* Theme */}
           <section className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
             <div className="flex gap-2">
-              {(['light', 'dark', 'system'] as Theme[]).map((theme) => (
+              {(['light', 'dark', 'system'] as Theme[]).map((themeOption) => (
                 <button
-                  key={theme}
-                  onClick={() => handleThemeChange(theme)}
+                  key={themeOption}
+                  onClick={() => handleThemeChange(themeOption)}
                   className={`flex-1 py-2 px-3 rounded-lg font-medium text-sm capitalize transition-colors ${
-                    settings.theme === theme
+                    (settings.theme || 'system') === themeOption
                       ? 'bg-blue-500 text-white'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
-                  {theme}
+                  {themeOption}
                 </button>
               ))}
             </div>
