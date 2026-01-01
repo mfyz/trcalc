@@ -36,10 +36,10 @@ export function QuickValues({ values, onSelect }: QuickValuesProps) {
           <button
             key={value}
             onClick={() => handleClick(value)}
-            className="px-3 py-1.5 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-600 dark:to-gray-700
-                       text-gray-700 dark:text-gray-200 rounded-md font-medium
-                       active:bg-gradient-to-t active:from-gray-100 active:to-gray-200
-                       dark:active:from-gray-700 dark:active:to-gray-800
+            className="px-3 py-1.5 bg-gradient-to-b from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-900/60
+                       text-purple-700 dark:text-purple-300 rounded-md font-medium
+                       active:bg-gradient-to-t active:from-purple-200 active:to-purple-300
+                       dark:active:from-purple-900/60 dark:active:to-purple-900/80
                        active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]
                        transition-all duration-75 text-sm whitespace-nowrap flex-shrink-0"
           >
