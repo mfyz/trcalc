@@ -72,6 +72,9 @@ export function Calculator() {
         timestamp: Date.now(),
       };
       setHistoryRef.current((prev) => [entry, ...prev].slice(0, 50));
+      // Reset input so it doesn't get saved again when user presses =
+      inputValueRef.current = 0;
+      setInputValue(0);
     }
   }, []);
 
