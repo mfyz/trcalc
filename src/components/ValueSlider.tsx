@@ -126,7 +126,7 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
           <div
             key={marker.value}
             className="absolute flex flex-col items-center pointer-events-none"
-            style={{ left: `${marker.position}%`, top: '18px', transform: 'translateX(-50%)' }}
+            style={{ left: `${marker.position}%`, top: '24px', transform: 'translateX(-50%)' }}
           >
             <div className="w-px h-2 bg-gray-300 dark:bg-gray-600" />
             <span className="text-[9px] text-gray-500 dark:text-gray-400 whitespace-nowrap">
