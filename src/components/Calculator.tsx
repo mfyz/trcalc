@@ -222,7 +222,7 @@ export function Calculator() {
   }
 
   return (
-    <div className="flex flex-col h-full w-full max-w-md mx-auto px-4 py-2">
+    <div className="flex flex-col h-full w-full max-w-md mx-auto px-2 py-2">
       {/* History preview - above input */}
       {history.length > 0 && (
         <div className="mb-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 -mx-1">

@@ -30,10 +30,22 @@ export function useTheme() {
 
     setResolvedTheme(isDark ? 'dark' : 'light');
 
+    const bgColor = isDark ? '#111827' : '#f9fafb';
+
     if (isDark) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+    }
+
+    // Update background colors for iOS safe area
+    document.documentElement.style.backgroundColor = bgColor;
+    document.body.style.backgroundColor = bgColor;
+
+    // Update theme-color meta tag for browser chrome
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', bgColor);
     }
   }, []);
 
