@@ -240,7 +240,7 @@ export function Calculator() {
     <div className="flex flex-col h-full w-full max-w-md mx-auto px-2 py-2">
       {/* History preview - above input */}
       {history.length > 0 && (
-        <div className="mb-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 -mx-1">
+        <div className="mb-2 bg-gray-100 dark:bg-gray-800 p-2 -mx-2 -mt-2">
           <History entries={history} onClear={handleClearHistory} />
         </div>
       )}
