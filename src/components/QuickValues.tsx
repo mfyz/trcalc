@@ -30,8 +30,8 @@ export function QuickValues({ values, onSelect }: QuickValuesProps) {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex flex-wrap gap-2">
+    <div className="w-full overflow-x-auto scrollbar-hide -mx-2 px-2">
+      <div className="flex gap-2 w-max">
         {values.map((value) => (
           <button
             key={value}
@@ -41,7 +41,7 @@ export function QuickValues({ values, onSelect }: QuickValuesProps) {
                        active:bg-gradient-to-t active:from-gray-100 active:to-gray-200
                        dark:active:from-gray-700 dark:active:to-gray-800
                        active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]
-                       transition-all duration-75 text-sm"
+                       transition-all duration-75 text-sm whitespace-nowrap flex-shrink-0"
           >
             {formatNumber(value)}
           </button>
