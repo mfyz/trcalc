@@ -3,6 +3,7 @@ import { Display } from './Display';
 import { Keypad } from './Keypad';
 import { MultiplierButtons } from './MultiplierButtons';
 import { QuickValues } from './QuickValues';
+import { ValueSlider } from './ValueSlider';
 import { History } from './History';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useExchangeRate } from '@/hooks/useExchangeRate';
@@ -265,6 +266,7 @@ export function Calculator() {
           onMultiplier={handleMultiplier}
         />
         <QuickValues values={settings.quickValues} onSelect={handleQuickValue} />
+        <ValueSlider value={inputValue} onChange={handleQuickValue} />
       </div>
 
       {/* Keypad - full width, stick to bottom */}
