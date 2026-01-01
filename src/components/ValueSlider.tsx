@@ -90,26 +90,9 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
   );
 
   return (
-    <div className="w-full px-1">
-      <div className="relative">
-        {/* Slider track with markers */}
-        <div className="relative h-8">
-          {/* Marker lines and labels */}
-          {markerPositions.map((marker) => (
-            <div
-              key={marker.value}
-              className="absolute flex flex-col items-center"
-              style={{ left: `${marker.position}%`, transform: 'translateX(-50%)' }}
-            >
-              <div className="w-px h-2 bg-gray-300 dark:bg-gray-600" />
-              <span className="text-[9px] text-gray-400 dark:text-gray-500 mt-0.5">
-                {marker.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Actual slider input */}
+    <div className="w-full px-2.5">
+      <div className="relative pt-2 pb-4">
+        {/* Slider input */}
         <input
           type="range"
           min="0"
@@ -119,7 +102,7 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
           onChange={handleChange}
           onTouchStart={handleTouchStart}
           onMouseDown={handleTouchStart}
-          className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer
+          className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer relative z-10
                      [&::-webkit-slider-thumb]:appearance-none
                      [&::-webkit-slider-thumb]:w-5
                      [&::-webkit-slider-thumb]:h-5
@@ -135,9 +118,22 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
                      [&::-moz-range-thumb]:border-0
                      [&::-moz-range-thumb]:shadow-md
                      [&::-moz-range-thumb]:cursor-pointer
-                     [&::-moz-range-thumb]:active:bg-blue-600
-                     -mt-5"
+                     [&::-moz-range-thumb]:active:bg-blue-600"
         />
+
+        {/* Marker ticks and labels - positioned on track */}
+        {markerPositions.map((marker) => (
+          <div
+            key={marker.value}
+            className="absolute flex flex-col items-center pointer-events-none"
+            style={{ left: `${marker.position}%`, top: '8px', transform: 'translateX(-50%)' }}
+          >
+            <div className="w-px h-3 bg-gray-400 dark:bg-gray-500" />
+            <span className="text-[9px] text-gray-500 dark:text-gray-400 mt-0.5 whitespace-nowrap">
+              {marker.label}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
