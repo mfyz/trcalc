@@ -30,8 +30,8 @@ export function QuickValues({ values, onSelect }: QuickValuesProps) {
   };
 
   return (
-    <div className="w-full overflow-x-auto scrollbar-hide -mx-2 px-2">
-      <div className="flex gap-2 w-max">
+    <div className="w-full overflow-x-auto scrollbar-hide -mx-2 pl-2">
+      <div className="flex gap-2 w-max pr-2">
         {values.map((value) => (
           <button
             key={value}
