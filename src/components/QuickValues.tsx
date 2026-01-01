@@ -14,7 +14,6 @@ export function QuickValues({ values, onSelect }: QuickValuesProps) {
 
   return (
     <div className="w-full">
-      <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick Values</div>
       <div className="flex flex-wrap gap-2">
         {values.map((value) => (
           <button

@@ -10,7 +10,6 @@ export function MultiplierButtons({ multipliers, onMultiplier }: MultiplierButto
 
   return (
     <div className="w-full">
-      <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Multipliers</div>
       <div className="flex flex-wrap gap-2">
         {multipliers.map((multiplier) => (
           <button
