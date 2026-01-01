@@ -121,15 +121,15 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
                      [&::-moz-range-thumb]:active:bg-blue-600"
         />
 
-        {/* Marker ticks and labels - positioned on track */}
+        {/* Marker ticks and labels - positioned below track */}
         {markerPositions.map((marker) => (
           <div
             key={marker.value}
             className="absolute flex flex-col items-center pointer-events-none"
-            style={{ left: `${marker.position}%`, top: '8px', transform: 'translateX(-50%)' }}
+            style={{ left: `${marker.position}%`, top: '18px', transform: 'translateX(-50%)' }}
           >
-            <div className="w-px h-3 bg-gray-400 dark:bg-gray-500" />
-            <span className="text-[9px] text-gray-500 dark:text-gray-400 mt-0.5 whitespace-nowrap">
+            <div className="w-px h-2 bg-gray-300 dark:bg-gray-600" />
+            <span className="text-[9px] text-gray-500 dark:text-gray-400 whitespace-nowrap">
               {marker.label}
             </span>
           </div>
