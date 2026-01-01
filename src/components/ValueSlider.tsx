@@ -3,6 +3,7 @@ import { useCallback, useMemo } from 'react';
 interface ValueSliderProps {
   value: number;
   onChange: (value: number) => void;
+  onRelease?: () => void;
 }
 
 // Logarithmic scale: map 0-100 slider position to 0-100M value
@@ -63,7 +64,7 @@ function haptic() {
   }
 }
 
-export function ValueSlider({ value, onChange }: ValueSliderProps) {
+export function ValueSlider({ value, onChange, onRelease }: ValueSliderProps) {
   const sliderPosition = useMemo(() => valueToSliderPosition(value), [value]);
 
   const handleChange = useCallback(
@@ -79,6 +80,10 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
   const handleTouchStart = useCallback(() => {
     haptic();
   }, []);
+
+  const handleRelease = useCallback(() => {
+    onRelease?.();
+  }, [onRelease]);
 
   const markerPositions = useMemo(
     () =>
@@ -102,6 +107,8 @@ export function ValueSlider({ value, onChange }: ValueSliderProps) {
           onChange={handleChange}
           onTouchStart={handleTouchStart}
           onMouseDown={handleTouchStart}
+          onTouchEnd={handleRelease}
+          onMouseUp={handleRelease}
           className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer relative z-10
                      [&::-webkit-slider-thumb]:appearance-none
                      [&::-webkit-slider-thumb]:w-5

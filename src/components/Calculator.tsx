@@ -47,6 +47,7 @@ export function Calculator() {
   const toCurrencyRef = useRef(toCurrency);
   const setHistoryRef = useRef(setHistory);
   const autoResetRef = useRef(settings.autoReset);
+  const sliderTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Keep refs updated
   useEffect(() => {
@@ -189,6 +190,71 @@ export function Calculator() {
     [pendingReset, resetWasHidden]
   );
 
+  const handleSliderChange = useCallback(
+    (value: number) => {
+      // Clear any pending slider timeout when slider is moved
+      if (sliderTimeoutRef.current) {
+        clearTimeout(sliderTimeoutRef.current);
+        sliderTimeoutRef.current = null;
+      }
+      // If there's a pending reset with a value, save it first
+      if (pendingReset && inputValue > 0) {
+        const outputValue = Math.round(inputValue * rate);
+        const entry: HistoryEntry = {
+          id: Date.now().toString(),
+          inputValue,
+          outputValue,
+          fromCurrency,
+          toCurrency,
+          rate,
+          modifier: null,
+          timestamp: Date.now(),
+        };
+        setHistory((prev) => [entry, ...prev].slice(0, 50));
+        setPendingReset(false);
+        resetWasHidden();
+      }
+      setInputValue(value);
+    },
+    [pendingReset, inputValue, rate, fromCurrency, toCurrency, setHistory, resetWasHidden]
+  );
+
+  const handleSliderRelease = useCallback(() => {
+    // Start 5 second timeout after slider release
+    if (sliderTimeoutRef.current) {
+      clearTimeout(sliderTimeoutRef.current);
+    }
+    sliderTimeoutRef.current = setTimeout(() => {
+      if (inputValueRef.current > 0) {
+        // Save to history
+        const outputValue = Math.round(inputValueRef.current * rateRef.current);
+        const entry: HistoryEntry = {
+          id: Date.now().toString(),
+          inputValue: inputValueRef.current,
+          outputValue,
+          fromCurrency: fromCurrencyRef.current,
+          toCurrency: toCurrencyRef.current,
+          rate: rateRef.current,
+          modifier: null,
+          timestamp: Date.now(),
+        };
+        setHistoryRef.current((prev) => [entry, ...prev].slice(0, 50));
+        // Trigger pending reset state
+        setPendingReset(true);
+      }
+      sliderTimeoutRef.current = null;
+    }, 5000);
+  }, []);
+
+  // Cleanup slider timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (sliderTimeoutRef.current) {
+        clearTimeout(sliderTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleSwap = useCallback(() => {
     setSettings((prev) => ({ ...prev, isReversed: !prev.isReversed }));
   }, [setSettings]);
@@ -266,7 +332,7 @@ export function Calculator() {
           onMultiplier={handleMultiplier}
         />
         <QuickValues values={settings.quickValues} onSelect={handleQuickValue} />
-        <ValueSlider value={inputValue} onChange={handleQuickValue} />
+        <ValueSlider value={inputValue} onChange={handleSliderChange} onRelease={handleSliderRelease} />
       </div>
 
       {/* Keypad - full width, stick to bottom */}
