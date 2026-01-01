@@ -1,40 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# TRCalc
+
+A mobile-first currency calculator PWA, optimized for quick conversions.
+
+## The Story
+
+I'm a Turkish techie living in New York, regularly traveling back to Turkey. With the country's challenging economy and ridiculously high inflation rates, it's exhausting to keep up with how much anything actually costs—especially for someone living abroad.
+
+I found myself constantly typing "XXX TRY in USD" into Google. Fortunately, Google smartly converts these queries in its results. But doing this 20+ times a day? That gets old fast.
+
+So I vibe-coded this mini web app to add to my phone's home screen. It's optimized for one thing: pop it open and start typing. No friction, no ads, no bloat—just instant currency conversion.
+
+## Features
+
+- **Mobile-first PWA** - Add to home screen for app-like experience
+- **Instant conversion** - Start typing immediately, see results in real-time
+- **Bidirectional** - Swap between USD and target currency with one tap
+- **Multiplier buttons** - Quick tax calculations (+KDV 18%, -KDV, +OTV25, etc.)
+- **Quick values** - Preset amounts for common conversions
+- **History** - Track your recent calculations
+- **Auto-reset** - Optionally save to history when switching apps
+- **Dark mode** - System, light, or dark theme support
+- **Offline-friendly** - Caches exchange rates locally
+- **No account required** - Everything stored locally in your browser
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) 16 (Pages Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [Open Exchange Rates API](https://openexchangerates.org/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/user/trcalc.git
+cd trcalc
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Add your Open Exchange Rates API key to .env
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file with:
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+OPEN_EXCHANGE_RATES_APP_ID=your_api_key_here
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Get a free API key at [Open Exchange Rates](https://openexchangerates.org/).
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
 
-## Learn More
+1. Open the app and start typing numbers
+2. See instant conversion to your target currency
+3. Tap the swap button to reverse direction
+4. Use multiplier buttons for tax calculations
+5. Tap quick values for common amounts
+6. View history by tapping the history section
 
-To learn more about Next.js, take a look at the following resources:
+### Adding to Home Screen
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+**iOS Safari:**
+1. Open the app in Safari
+2. Tap the Share button
+3. Select "Add to Home Screen"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Android Chrome:**
+1. Open the app in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home screen"
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! Here's how you can help:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Quick Start
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Commit with clear messages (`git commit -m 'Add amazing feature'`)
+5. Push to your branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+### Guidelines
+
+- **Keep it simple** - This app is intentionally minimal. Think twice before adding complexity.
+- **Mobile-first** - Test on mobile devices. The primary use case is quick phone lookups.
+- **No breaking changes** - Settings and history are stored in localStorage. Don't break existing users.
+- **TypeScript** - Maintain type safety. No `any` types unless absolutely necessary.
+- **Test your changes** - Make sure the app works on iOS Safari (PWA mode) and Android Chrome.
+
+### Ideas for Contributions
+
+- Additional currency support
+- Improved offline handling
+- Accessibility improvements
+- Performance optimizations
+- Bug fixes
+
+### Reporting Issues
+
+Found a bug? Have a suggestion? Open an issue with:
+- Clear description of the problem or idea
+- Steps to reproduce (for bugs)
+- Device/browser information
+
+## License
+
+MIT License
+
+Copyright (c) 2025
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Made with mass mass mass mass amount of mass amounts of mass amounts of Claude tokens in NYC.
