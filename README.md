@@ -88,32 +88,7 @@ Get a free API key at [Open Exchange Rates](https://openexchangerates.org/).
 
 ## Contributing
 
-Contributions are welcome! Here's how you can help:
-
-### Quick Start
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Commit with clear messages (`git commit -m 'Add amazing feature'`)
-5. Push to your branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-### Guidelines
-
-- **Keep it simple** - This app is intentionally minimal. Think twice before adding complexity.
-- **Mobile-first** - Test on mobile devices. The primary use case is quick phone lookups.
-- **No breaking changes** - Settings and history are stored in localStorage. Don't break existing users.
-- **TypeScript** - Maintain type safety. No `any` types unless absolutely necessary.
-- **Test your changes** - Make sure the app works on iOS Safari (PWA mode) and Android Chrome.
-
-### Ideas for Contributions
-
-- Additional currency support
-- Improved offline handling
-- Accessibility improvements
-- Performance optimizations
-- Bug fixes
+Contributions are welcome! Fork the repo, make your changes, and open a PR.
 
 ### Reporting Issues
 
