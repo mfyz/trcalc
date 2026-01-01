@@ -34,7 +34,8 @@ export function Keypad({ onDigit, onClear, onBackspace, onEquals }: KeypadProps)
       <button className={equalsClass} onClick={onEquals}>=</button>
 
       {/* Row 4 */}
-      <button className={`${digitClass} col-span-3 border-r border-gray-200 dark:border-gray-600`} onClick={() => onDigit('0')}>0</button>
+      <button className={`${digitClass} col-span-2 border-r border-gray-200 dark:border-gray-600`} onClick={() => onDigit('0')}>0</button>
+      <button className={`${digitClass} border-r border-gray-200 dark:border-gray-600 text-xl`} onClick={() => onDigit('000')}>000</button>
     </div>
   );
 }

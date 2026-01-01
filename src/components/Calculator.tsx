@@ -126,7 +126,12 @@ export function Calculator() {
       }
 
       setInputValue((prev) => {
-        const newValue = prev * 10 + parseInt(digit);
+        let newValue: number;
+        if (digit === '000') {
+          newValue = prev * 1000;
+        } else {
+          newValue = prev * 10 + parseInt(digit);
+        }
         // Limit to reasonable number
         if (newValue > 999999999) return prev;
         return newValue;
